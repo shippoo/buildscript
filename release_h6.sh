@@ -105,7 +105,7 @@ function compile_deal()
 	fi		
 	decide_public_name	
 	cd $MODEM_DIR
-	git co $MODEM_V	
+	git checkout $MODEM_V	
 
 	cp $MODEM_DIR/mbin/NON-HLOS.bin $ANDROID_DIR/bootable/recovery/modem	
 	cd $ANDROID_DIR	
