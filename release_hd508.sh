@@ -31,30 +31,19 @@ SUB_V="01"
 REVISE_V="00"
 
 #日期
-TODAY=`date +%F`
+TODAY=`date +%Y%m%d`
 
 #夜版编译路径
 NIGHTLY_DIR="/workspace/share/HD508_nightly/"$TODAY"/"
 
 #组合版本号名称
-PUB_DIR_NAME=$PRODUCT_MODEL_$HW_V_$MAIN_V_$SUB_V_$REVISE_V+$TODAY
+PUB_DIR_NAME=${PRODUCT_MODEL}_${HW_V}_${MAIN_V}_${SUB_V}_${REVISE_V}_${TODAY}
 
 #android 最近提交的HASH码 方便溯源
 COMMIT_AP=
 
 #modem最近提交的HASH码 方便溯源
 COMMIT_CP=
-
-function option_config()
-{
-	echo ""
-	echo "##################################"
-	echo "# release script version : 1.0.2 #"
-	echo "# 	modify by wumigen      #"
-	echo "##################################"
-	echo ""
-}
-
 
 function copy_and_zip()
 {
@@ -101,7 +90,7 @@ function compile_code()
 function init()
 {
     source ~/.profile
-    BUILD_DIR="/workspace/build"
+    BUILD_DIR="/workspace/build/"
     cd $BUILD_DIR
     ANDROID_DIR=$BUILD_DIR/hd508_android
     MODEM_DIR=$BUILD_DIR/hd508_modem
@@ -110,7 +99,7 @@ function init()
 }
 
 #下载代码并设置参数
-function cloneCode()
+function clone_code()
 {
     git clone $ANDROID_GIT
     cd $ANDROID_DIR
@@ -128,6 +117,29 @@ function cloneCode()
 #设置需要传到代码去的变量
 function export_pub()
 {
-    
+    echo "nothing to export"    
 }
-
+function print_vars()
+{
+	echo -en "\n"
+	echo "##################################"
+	echo "# release script version : 1.0.0 #"
+	echo "#     author  wumigen            #"
+	echo "##################################"
+    echo -en "\n\n"
+    echo "ANDROID_GIT   = "$ANDROID_GIT
+    echo "MODEM_GIT     = "$MODEM_GIT
+    echo "BUILD_DIR     = "$BUILD_DIR
+    echo "ANDROID_DIR   = "$ANDROID_DIR
+    echo "MODEM_DIR     = "$MODEM_DIR
+    echo "COMMIT_AP     = "$COMMIT_AP
+    echo "COMMIT_CP     = "$COMMIT_CP
+    echo "ANDROID_GIT   = "$ANDROID_GIT
+    echo "PUB_DIR_NAME  = "$PUB_DIR_NAME
+    echo -en "\n\n"
+	which javac
+}
+init
+clone_code
+print_vars
+compile_code

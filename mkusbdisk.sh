@@ -29,7 +29,7 @@ sudo cp -r  $USB_DIR/* $MOUNT_DIR
 sudo umount $MOUNT_DIR
 
 #打包成img文件 coumt/1024 为多少M 这个值要大于你制作镜像的大小
-dd if=$TEMP_USB of=usbdisk.img bs=1024 count=122880
+dd if=$TEMP_USB of=usbdisk.img bs=1024 count=76875
 
 #删除临时目录
 rm -rf $TEMP_USB
