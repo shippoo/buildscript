@@ -220,6 +220,9 @@ function compile_code()
 	compile_deal  "H6C+W"  "keda" "nvbak"		
 	compile_deal  "H6W"  "keda" "nvbak"	
 
+	compile_deal "H6C+W" "zhongshan" "nvbak"
+	compile_deal "H6W" "zhongshan" "nvbak"
+
 #	compile_deal  "H6C+W"  "guangxi" "smt"		
 #	compile_deal  "H6W"  "guangxi" "smt"	
 
@@ -255,7 +258,9 @@ deal_code
 compile_code
 mv android_lg $NIGHTLY_DIR
 mv build.log $NIGHTLY_DIR
-rm -rf !(release_h6.sh|*.rar)
+mv release_h6.sh ../
+rm -rf ./*
+mv ../release_h6.sh ./
 
 
 
